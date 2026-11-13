@@ -9,7 +9,7 @@ IMG_SIZE = (224, 224)
 INPUT_SHAPE = (224, 224, 3)
 
 # Training configuration
-BATCH_SIZE = 32
+BATCH_SIZE = 16
 SEED = 42
 VAL_SPLIT = 0.15  # Carved out of train/, test/ stays untouched
 
