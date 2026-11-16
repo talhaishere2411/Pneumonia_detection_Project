@@ -34,9 +34,9 @@ def build_vgg16(dropout: float = 0.5) -> Model:
         name="vgg16_pneumonia"
     )
     
-    print(f"✓ Model built: {model.name}")
-    print(f"✓ Total params: {model.count_params():,}")
-    print(f"✓ Trainable params: {sum([tf.size(w).numpy() for w in model.trainable_weights]):,}")
+    print(f"[OK] Model built: {model.name}")
+    print(f"[OK] Total params: {model.count_params():,}")
+    print(f"[OK] Trainable params: {sum([tf.size(w).numpy() for w in model.trainable_weights]):,}")
     
     return model
 
@@ -51,7 +51,7 @@ def compile_model(model: Model, lr: float = 1e-4) -> Model:
         metrics=["accuracy"]
     )
     
-    print(f"✓ Model compiled with lr={lr}")
+    print(f"[OK] Model compiled with lr={lr}")
     return model  # <--- Added return statement
 
 
@@ -74,8 +74,8 @@ def unfreeze_block5(model: Model, lr: float = 1e-5) -> Model:
     )
     
     trainable_count = sum([tf.size(w).numpy() for w in model.trainable_weights])
-    print(f"✓ Block5 unfrozen for fine-tuning")
-    print(f"✓ Trainable params: {trainable_count:,}")
-    print(f"✓ Model recompiled with lr={lr}")
+    print(f"[OK] Block5 unfrozen for fine-tuning")
+    print(f"[OK] Trainable params: {trainable_count:,}")
+    print(f"[OK] Model recompiled with lr={lr}")
     
     return model  # <--- Added return statement

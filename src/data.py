@@ -94,10 +94,10 @@ def get_generators(root=None) -> Tuple[ImageDataGenerator, ImageDataGenerator, I
         shuffle=False
     )
     
-    print(f"✓ Train samples: {train_generator.samples}")
-    print(f"✓ Validation samples: {val_generator.samples}")
-    print(f"✓ Test samples: {test_generator.samples}")
-    print(f"✓ Class indices: {train_generator.class_indices}")
+    print(f"[OK] Train samples: {train_generator.samples}")
+    print(f"[OK] Validation samples: {val_generator.samples}")
+    print(f"[OK] Test samples: {test_generator.samples}")
+    print(f"[OK] Class indices: {train_generator.class_indices}")
     
     return train_generator, val_generator, test_generator
 
@@ -128,6 +128,6 @@ def get_class_weights(train_gen: ImageDataGenerator) -> Dict[int, float]:
         1: float(class_weights[1])
     }
     
-    print(f"✓ Class weights computed: {class_weight_dict}")
+    print(f"[OK] Class weights computed: {class_weight_dict}")
     
     return class_weight_dict
