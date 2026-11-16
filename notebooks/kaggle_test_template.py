@@ -7,7 +7,8 @@ Copy this entire script into a Kaggle notebook cell
 # CONFIGURATION - UPDATE THESE!
 # ============================================================
 GITHUB_REPO_URL = "https://github.com/YOUR_USERNAME/pneumonia-gradcam.git"
-MODEL_PATH = "/kaggle/input/pneumonia-vgg16-model/vgg16_pneumonia.h5"  # or .keras
+MODEL_DATASET = "pneumonia-vgg16-model"  # Your Kaggle dataset name
+MODEL_FILENAME = "vgg16_pneumonia.h5"     # Your model file (.h5 or .keras)
 
 # ============================================================
 # SETUP
@@ -35,6 +36,17 @@ print("✓ Setup complete!")
 # ============================================================
 # LOAD MODEL AND DATA
 # ============================================================
+# Auto-detect model path (.h5 or .keras both work!)
+MODEL_PATH = f"/kaggle/input/{MODEL_DATASET}/{MODEL_FILENAME}"
+print(f"Loading model from: {MODEL_PATH}")
+
+# Check if file exists
+if not Path(MODEL_PATH).exists():
+    print(f"❌ Model not found at: {MODEL_PATH}")
+    print("\nAvailable files:")
+    os.system(f"ls -la /kaggle/input/{MODEL_DATASET}/")
+    raise FileNotFoundError(f"Model file not found. Update MODEL_FILENAME in config.")
+
 model = tf.keras.models.load_model(MODEL_PATH)
 train_gen, val_gen, test_gen = get_generators()
 
